@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
+import { ToastContainer } from "react-toastify";
+import Box from "@mui/material/Box";
+import { ProtectedRoutes, Navbar, Footer } from "./components";
+import { Login, Register, Dashboard, SharedLayout, LandingPage } from "./pages";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <CssBaseline />
+      <Box sx={{ position: "relative", minHeight: "100vh" }}>
+        <Navbar />
+        <Box sx={{ paddingTop: "5em", paddingBottom: "4rem" }}>
+          <Routes>
+            <Route exact path="/" element={<LandingPage/>} />
+            <Route exact path="/login" element={<Login />}></Route>
+            <Route exact path="/register" element={<Register />}></Route>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoutes>
+                  <SharedLayout />
+                </ProtectedRoutes>
+              }
+            >
+              {/* OTHER PROTECTED ROUTES */}
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
+
+            {/* ERROR PAGE */}
+            {/* <Route exact path="*" element={<Error />}></Route> */}
+          </Routes>
+          <ToastContainer position="top-center" />
+        </Box>
+        <Footer />
+      </Box>
+    </BrowserRouter>
   );
 }
 
