@@ -9,7 +9,7 @@ const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const dbUrl = !process.env.DB_URL || "mongodb://localhost:27017/masterstack";
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/masterstack";
 
 const authRoutes = require("./routes/auth");
 const itemRoutes = require("./routes/item");
@@ -24,6 +24,7 @@ if (
   });
 }
 
+mongoose.set('strictQuery', false);
 mongoose
   .connect(dbUrl)
   .then(() => {

@@ -25,6 +25,7 @@ const userSlice = createSlice({
   reducers: {
     logoutUser: (state) => {
       state.user = null;
+      state.token = null;
       removeTokenFromLocalStorage();
       toast.success("Logout Successfull");
     },

@@ -4,10 +4,10 @@ const Footer = () => {
   return (
     <footer
       style={{
-        backgroundColor: 'black',
+        backgroundColor: '#212121',
         textAlign: 'center',
         color: 'rgb(255,255,255,0.5)',
-        padding: '2rem',
+        padding: '1.2rem',
         fontSize: '1rem',
         position: 'absolute',
         bottom: '0',
